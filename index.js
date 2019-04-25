@@ -6,7 +6,6 @@ const { React, getModuleByDisplayName } = require('powercord/webpack');
 
 const { resolve } = require('path');
 
-const commands = require('./commands');
 const AnimeModal = require('./components/AnimeModal');
 const Settings = require('./Settings');
 
@@ -18,10 +17,6 @@ module.exports = class Anime extends Plugin {
       React.createElement(Settings, {
         ...props
       })
-    );
-
-    Object.values(commands).forEach(command =>
-      this.registerCommand(command.command, command.aliases || [], command.description, command.usage, command.func)
     );
   }
 
