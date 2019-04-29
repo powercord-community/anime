@@ -82,9 +82,7 @@ module.exports = class AnimeModal extends React.Component {
     const { entries } = this.state;
     const animeResultList = [];
     entries.forEach(animeResult => {
-      if (this.props.getSetting('nsfwFilter', true) && !animeResult.attributes.nsfw) {
-        animeResultList.push(<AnimeResult className="anime-result" item={animeResult.attributes}/>);
-      }
+      animeResultList.push(<AnimeResult className="anime-result" item={animeResult.attributes}/>);
     });
     return (
       <Modal size={Modal.Sizes.LARGE}>

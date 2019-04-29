@@ -7,17 +7,11 @@ const { React, getModuleByDisplayName } = require('powercord/webpack');
 const { resolve } = require('path');
 
 const AnimeModal = require('./components/AnimeModal');
-const Settings = require('./Settings');
 
 module.exports = class Anime extends Plugin {
   async startPlugin () {
     this.loadCSS(resolve(__dirname, 'style.scss'));
     this._injectModal();
-    this.registerSettings('anime', 'Anime Search', (props) =>
-      React.createElement(Settings, {
-        ...props
-      })
-    );
   }
 
   pluginWillUnload () {
@@ -33,7 +27,7 @@ module.exports = class Anime extends Plugin {
           position: 'bottom'
         }, React.createElement('div', {
           className: 'anime-header-icon-s',
-          onClick: () => openModal(() => React.createElement(this.settings.connectStore(AnimeModal)))
+          onClick: () => openModal(AnimeModal)
         }))
       );
       return res;
