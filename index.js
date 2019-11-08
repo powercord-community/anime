@@ -20,16 +20,18 @@ module.exports = class Anime extends Plugin {
 
   async _injectModal () {
     const HeaderBarContainer = await getModuleByDisplayName('HeaderBarContainer');
-    inject('anime-headerbar', HeaderBarContainer.prototype, 'renderToolbar', (args, res) => {
-      res.props.children.push(
-        React.createElement(Tooltip, {
-          text: 'Anime lookup',
-          position: 'bottom'
-        }, React.createElement('div', {
-          className: 'anime-header-icon-s',
-          onClick: () => openModal(AnimeModal)
-        }))
-      );
+    inject('anime-headerbar', HeaderBarContainer.prototype, 'renderLoggedIn', (args, res) => {
+      if (res.props.toolbar && res.props.toolbar.props.children && res.props.toolbar.props.children[0][0]) {
+        res.props.children.push(
+          React.createElement(Tooltip, {
+            text: 'Anime lookup',
+            position: 'bottom'
+          }, React.createElement('div', {
+            className: 'anime-header-icon-s',
+            onClick: () => openModal(AnimeModal)
+          }))
+        );
+      }
       return res;
     });
   }
