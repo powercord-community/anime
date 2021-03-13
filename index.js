@@ -10,7 +10,7 @@ const AnimeModal = require('./components/AnimeModal');
 
 module.exports = class Anime extends Plugin {
   async startPlugin () {
-    this.loadCSS(resolve(__dirname, 'style.scss'));
+    this.loadStylesheet(resolve(__dirname, 'style.scss'));
     this._injectModal();
   }
 
